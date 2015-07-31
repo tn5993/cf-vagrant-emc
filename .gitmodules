@@ -1,3 +1,21 @@
+[submodule "dea_ng"]
+	path = dea_ng
+	url = https://github.com/cloudfoundry/dea_ng.git
 [submodule "cloud_controller_ng"]
 	path = cloud_controller_ng
 	url = https://github.com/cloudfoundry/cloud_controller_ng.git
+[submodule "gorouter"]
+	path = gorouter
+	url = https://github.com/cloudfoundry/gorouter.git
+[submodule "hm9000"]
+	path = hm9000
+	url = https://github.com/cloudfoundry/hm9000.git
+[submodule "uaa"]
+	path = uaa
+	url = https://github.com/cloudfoundry/uaa.git
+[submodule "collector"]
+	path = collector
+	url = https://github.com/cloudfoundry/collector.git
+[submodule "loggregator"]
+	path = loggregator
+	url = https://github.com/cloudfoundry/loggregator.git
