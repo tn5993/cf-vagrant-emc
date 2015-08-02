@@ -1,0 +1,21 @@
+[submodule "src/cloud_controller_ng"]
+	path = src/cloud_controller_ng
+	url = https://github.com/cloudfoundry/cloud_controller_ng.git
+[submodule "src/warden"]
+	path = src/warden
+	url = https://github.com/cloudfoundry/warden.git
+[submodule "src/collector"]
+	path = src/collector
+	url = https://github.com/cloudfoundry/collector.git
+[submodule "src/dea"]
+	path = src/dea
+	url = https://github.com/cloudfoundry/dea_ng.git
+[submodule "src/loggregator"]
+	path = src/loggregator
+	url = https://github.com/cloudfoundry/loggregator.git
+[submodule "src/health_manager"]
+	path = src/health_manager
+	url = https://github.com/cloudfoundry/hm-workspace.git
+[submodule "src/uaa"]
+	path = src/uaa
+	url = https://github.com/cloudfoundry/uaa.git
