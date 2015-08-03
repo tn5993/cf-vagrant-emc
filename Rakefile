@@ -25,7 +25,7 @@ namespace :cf do
   
   # Do bundle install for all CloudFoundry components
   task :do_bundle_install do
-    dirs = ["src","src/cloud_controller_ng", "src/dea_ng", "src/warden/warden"]
+    dirs = [".","src/cloud_controller_ng", "src/dea_ng", "src/warden/warden"]
     
     dirs.each do |dir|
       component_path = path(dir)

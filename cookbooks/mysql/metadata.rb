@@ -1,0 +1,7 @@
+name             'cookbooks/mysql'
+maintainer       'YOUR_NAME'
+maintainer_email 'YOUR_EMAIL'
+license          'All rights reserved'
+description      'Installs/Configures cookbooks/mysql'
+long_description 'Installs/Configures cookbooks/mysql'
+version          '0.1.0'
