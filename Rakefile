@@ -2,30 +2,28 @@ require 'rake'
 require 'rake/testtask'
 require 'fileutils'
 
-namespace :host do
+namespace :cf do
+  
+  desc "INITIALIZE VM"
   task :init => [
-    :do_update_submodules
+    :do_update_submodules,
+    :do_bundle_install,
+    :do_init_cloud_controller_ng
   ]
   
-  # Update all the git submodules
   task :do_update_submodules do 
     puts "==> Init Git submodules"
     system "git submodule update --init --recursive"
   end
-end
 
-
-namespace :cf do
-  
-  desc "INITIALIZE REPOS AND VM"
-  task :init => [
-    :do_bundle_install,
-    :do_init_cloud_controller_ng,
-  ]
-  
   # Do bundle install for all CloudFoundry components
   task :do_bundle_install do
-    dirs = [".","src/cloud_controller_ng", "src/dea_ng", "src/warden/warden"]
+    system "rbenv install 2.1.6" # Update ruby to 2.1.6 since cloud foundry use 2.1.6 version
+    system "rbenv rehash" #Read more about rbenv on https://github.com/sstephenson/rbenv
+    system "gem install bundler"
+    system "gem install cf" #conveniently, this task install cloud foundry cli too
+
+    dirs = ["src/cloud_controller_ng", "src/dea", "src/warden/warden"]
     
     dirs.each do |dir|
       component_path = path(dir)
@@ -35,7 +33,6 @@ namespace :cf do
         raise "Bundle install at #{component_path} failed"
       end
     end
-    system "rbenv rehash"
   end
   
   desc "Init uaa"
@@ -48,7 +45,7 @@ namespace :cf do
     puts "==> Deleting cloud_controller_ng database."
     delete_cc_db!
     puts "==> Runing migrations cloud_controller_ng database."
-    Dir.chdir path('cloud_controller_ng')
+    Dir.chdir path('src/cloud_controller_ng')
     system "bundle exec rake db:migrate"
   end
   

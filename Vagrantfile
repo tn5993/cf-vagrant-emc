@@ -7,6 +7,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "hashicorp/precise32"
   config.vm.hostname = "cf"
   config.vm.network :private_network, ip: "192.168.12.34"
+  config.vm.network :forwarded_port, guest: 8080, host: 8080
   
   config.berkshelf.enabled = true
   config.vm.provision :chef_solo do |chef|
@@ -22,19 +23,29 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe 'mysql_config'
     chef.add_recipe 'postgresql::server'
     chef.add_recipe 'golang'
+
+    chef.add_recipe 'cloudfoundry::warden'
+    chef.add_recipe 'cloudfoundry::dea'
         
     chef.json = {
       :rbenv => {
         :user_installs => [{
           :user => 'vagrant',
-          :rubies => ["2.2.1"],
-          :global => "2.2.1",
+          :rubies => ["2.1.5"],
+          :global => "2.1.5",
           :gems => {
-            "2.2.1" => [
-              { name => "bundler" }
+            "2.1.5" => [
+              { :name => "bundler" }
             ]
           }
         }]
+      },
+      :java => {
+        :install_flavor => "oracle",
+        :jdk_version => "7",
+        :oracle => {
+          "accept_oracle_download_terms" => true
+        }
       },
       :mysql => {
          :server_root_password => "password",

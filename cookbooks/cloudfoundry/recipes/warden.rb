@@ -1,5 +1,5 @@
-ROOT_FS = "/var/warden/rootfs"
-ROOT_FS_URL = "http://cfstacks.s3.amazonaws.com/lucid64.dev.tgz"
+ROOT_FS = "/var/warden/rootfs_cflinuxfs2"
+ROOT_FS_URL = "http://cf-runtime-stacks.s3.amazonaws.com/cflinuxfs2.dev.tgz"
 
 if ["debian", "ubuntu"].include?(node["platform"])
   if node["kernel"]["release"].end_with? "virtual"
