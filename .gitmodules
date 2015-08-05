@@ -19,3 +19,6 @@
 [submodule "src/uaa"]
 	path = src/uaa
 	url = https://github.com/cloudfoundry/uaa.git
+[submodule "src/gorouter"]
+	path = src/gorouter
+	url = https://github.com/cloudfoundry/gorouter.git
