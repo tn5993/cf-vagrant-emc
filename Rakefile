@@ -2,11 +2,14 @@ require 'rake'
 require 'rake/testtask'
 require 'fileutils'
 
+RUBY_VERSION = "2.1.6"
+
 namespace :cf do
   
   desc "INITIALIZE VM"
   task :init => [
     :do_update_submodules,
+    :do_rbenv_setup,
     :do_bundle_install,
     :do_init_cloud_controller_ng
   ]
@@ -16,15 +19,15 @@ namespace :cf do
     system "git submodule update --init --recursive"
   end
 
-  # Do bundle install for all CloudFoundry components
-  task :do_bundle_install do
-    system "rbenv install 2.1.6" # Update ruby to 2.1.6 since cloud foundry use 2.1.6 version
+  task :do_rbenv_setup do
+    system "rbenv install #{RUBY_VERSION}" # Update ruby to 2.1.6 since cloud foundry use 2.1.6 version
     system "rbenv rehash" #Read more about rbenv on https://github.com/sstephenson/rbenv
     system "gem install bundler"
-    system "gem install cf" #conveniently, this task install cloud foundry cli too
+  end
 
-    dirs = ["src/cloud_controller_ng", "src/dea", "src/warden/warden"]
-    
+  # Do bundle install for all CloudFoundry components
+  task :do_bundle_install do
+    dirs = [".", "src/cloud_controller_ng", "src/dea", "src/warden/warden"]
     dirs.each do |dir|
       component_path = path(dir)
       puts "Component path is #{component_path}"
@@ -48,7 +51,6 @@ namespace :cf do
     Dir.chdir path('src/cloud_controller_ng')
     system "bundle exec rake db:migrate"
   end
-  
   
   #Helper Functions
   def root_path
