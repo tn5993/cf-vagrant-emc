@@ -51,7 +51,7 @@ This means that the default source for cookbook is https://supermarket.chef.io. 
 
 Note: some provisioning is achieved through bootstrap.sh.
 
-* Cloud Foundry installation
+### Cloud Foundry installation
 Basically, cloud foundry has the following components. They are:
 - [CloudController](https://github.com/cloudfoundry/cloud_controller_ng.git)
 - [GoRouter](https://github.com/cloudfoundry/gorouter.git)
