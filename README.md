@@ -16,23 +16,23 @@
 
 ## Run Cloud Foundry on Vagrant (Implementing)
 ================
-1. Clone this project
+* Clone this project
 ```shell
 $ git clone https://github.com/tn5993/cf-vagrant-emc.git
 $ cd cf-vagrant-emc
 ```
 
-2. Bring up the VM
+* Bring up the VM
 ```shell
 $ vagrant up
 ```
 
-3. Login to the VM and config it using Ruby Rake
+* Login to the VM and config it using Ruby Rake
 ```shell
 $ bundle exec rake cf:init
 ```
 
-4. Done
+* Done
 
 ## Behind the scene
 ================
