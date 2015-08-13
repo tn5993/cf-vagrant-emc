@@ -16,22 +16,28 @@
 
 ## Run Cloud Foundry on Vagrant (Implementing)
 ================
-1. Clone this project
-- $ git clone https://github.com/tn5993/cf-vagrant-emc.git
-- $ cd cf-vagrant-emc
+* Clone this project
+```shell
+$ git clone https://github.com/tn5993/cf-vagrant-emc.git
+$ cd cf-vagrant-emc
+```
 
-2. Bring up the VM
-- $ vagrant up
+* Bring up the VM
+```shell
+$ vagrant up
+```
 
-3. Login to the VM and config it using Ruby Rake
-- $ bundle exec rake cf:init
+* Login to the VM and config it using Ruby Rake
+```shell
+$ bundle exec rake cf:init
+```
 
-4. Done
+* Done
 
 ## Behind the scene
 ================
 The flow of the program is as below
-* Vagrant Provisioning
+* Vagrant Provisioning: 
 At first, when we call `vagrant up`, it will use the `ubuntu\trusty64` box and do provisioning through bootstrap.sh and chef-solo configuration. You can look at Vagrantfile for more information. If you are not familiar with chef sdk, you can learn more about chef at https://learn.chef.io/. Basically, chef is a DSL(Domain Specific Language) that allows us to do package installation. Chef's instruction is stored inside `recipes`. Additionally, we can accummulate those recipes together and put it inside a `cookbook`. For this project, the Berkfile file store all the reference to cookbooks. For example, inside Berkfile, we see that
 
 ```shell
@@ -45,8 +51,8 @@ This means that the default source for cookbook is https://supermarket.chef.io. 
 
 Note: some provisioning is achieved through bootstrap.sh.
 
-* Cloud Foundry installation
-If you want to read about cloud foundry, you can go https://docs.cloudfoundry.org/ and enjoy your reading. Basically, cloud foundry has the following components. They are:
+### Cloud Foundry installation
+Basically, cloud foundry has the following components. They are:
 - [CloudController](https://github.com/cloudfoundry/cloud_controller_ng.git)
 - [GoRouter](https://github.com/cloudfoundry/gorouter.git)
 - [HealthManager](https://github.com/cloudfoundry/hm9000.git)
