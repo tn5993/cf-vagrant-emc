@@ -1,0 +1,144 @@
+---
+local_route: 192.168.12.34.xip.io
+external_port: 8181
+pid_filename: /tmp/cloud_controller.pid
+message_bus_servers:
+  - nats://127.0.0.1:4222
+
+external_domain:
+  - api.192.168.12.34.xip.io
+
+system_domain_organization: emc-corp
+system_domain: 192.168.12.34.xip.io
+app_domains:
+  - 192.168.12.34.xip.io
+
+jobs:
+  global:
+    timeout_in_seconds: 14400
+
+app_events:
+  cutoff_age_in_days: 31
+
+app_usage_events:
+  cutoff_age_in_days: 31
+
+audit_events:
+  cutoff_age_in_days: 31
+
+failed_jobs:
+  cutoff_age_in_days: 31
+
+default_app_memory: 1024 #mb
+default_app_disk_in_mb: 1024
+maximum_app_disk_in_mb: 2048
+
+broker_client_default_async_poll_interval_seconds: 60
+broker_client_max_async_poll_duration_minutes: 10080
+
+info:
+  name: "cf-vagrant-emc"
+  build: "2222"
+  version: 2
+  support_address: "http://support.cloudfoundry.com"
+  description: "Cloud Foundry sponsored by Pivotal"
+  app_ssh_endpoint: "ssh.system.domain.example.com:2222"
+
+nginx:
+  use_nginx: false
+  instance_socket: "/var/vcap/sys/run/cloud_controller_ng/cloud_controller.sock"
+
+logging:
+  file: /tmp/cloud_controller.log
+  level: debug2
+
+doppler:
+  enabled: false
+
+db:
+  database: "postgres://postgres@localhost:5432/cc_test"
+  max_connections: 32
+  pool_timeout: 10
+
+uaa:
+  url: "http://localhost:8080/uaa"
+  resource_id: "cloud_controller"
+  symmetric_secret: "tokensecret"
+
+hm9000:
+  url: "http://localhost:5155"
+
+cc_partition: ng
+
+bulk_api:
+  auth_user: bulk_user
+  auth_password: bulk_password
+
+internal_api:
+  auth_user: internal_user
+  auth_password: internal_password
+
+# App staging parameters
+staging:
+  # Max duration for staging process
+  timeout_in_seconds: 120 # secs
+  auth:
+    user: zxsfhgjg
+    password: ZNVfdase9
+
+quota_definitions:
+  default:
+    memory_limit: 10240
+    total_services: 100
+    non_basic_services_allowed: true
+    total_routes: 1000
+
+default_quota_definition: default
+
+resource_pool:
+  resource_directory_key: cc-resources
+  fog_connection:
+    provider: Local
+
+packages:
+  app_package_directory_key: cc-packages
+  fog_connection:
+    provider: Local
+
+droplets:
+  droplet_directory_key: cc-droplets
+  fog_connection:
+    provider: Local
+
+buildpacks:
+  buildpack_directory_key: cc-buildpacks
+  fog_connection:
+    provider: Local
+
+db_encryption_key: "asdfasdfasdf"
+
+default_health_check_timeout: 60
+maximum_health_check_timeout: 180
+
+flapping_crash_count_threshold: 3
+
+disable_custom_buildpacks: false
+broker_client_timeout_seconds: 60
+
+uaa_client_name: 'cc-service-dashboards'
+uaa_client_secret: 'some-sekret'
+uaa_client_scope: openid,cloud_controller_service_permissions.read
+
+renderer:
+  max_results_per_page: 100
+  default_results_per_page: 50
+  max_inline_relations_depth: 3
+
+install_buildpacks:
+  - name: java_buildpack
+    package: buildpack_java
+  - name: ruby_buildpack
+    package: buildpack_ruby
+  - name: node_buildpack
+    package: buildpack_node
+

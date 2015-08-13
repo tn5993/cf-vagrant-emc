@@ -1,22 +1,9 @@
-ROOT_FS = "/var/warden/rootfs_cflinuxfs2"
+package "libffi-dev"
+package "libreadline6-dev"
+package "curl"
+
+ROOT_FS = "/var/warden/rootfs"
 ROOT_FS_URL = "http://cf-runtime-stacks.s3.amazonaws.com/cflinuxfs2.dev.tgz"
-
-if ["debian", "ubuntu"].include?(node["platform"])
-  if node["kernel"]["release"].end_with? "virtual"
-    package "linux-image-extra" do
-      package_name "linux-image-extra-#{node['kernel']['release']}"
-      action :install
-    end
-  end
-end
-
-package "quota" do
-  action :install
-end
-
-package "iptables" do
-  action :install
-end
 
 package "apparmor" do
   action :remove
@@ -38,3 +25,5 @@ end
 execute "copy resolv.conf from outside container" do
   command "cp /etc/resolv.conf #{ROOT_FS}/etc/resolv.conf"
 end
+
+
