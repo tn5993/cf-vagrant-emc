@@ -13,15 +13,9 @@
 [submodule "src/loggregator"]
 	path = src/loggregator
 	url = https://github.com/cloudfoundry/loggregator.git
-[submodule "src/uaa"]
-	path = src/uaa
-	url = https://github.com/cloudfoundry/uaa.git
 [submodule "src/github.com/cloudfoundry/gorouter"]
 	path = src/github.com/cloudfoundry/gorouter
 	url = https://github.com/cloudfoundry/gorouter.git
-[submodule "src/hm9000"]
-	path = src/hm9000
-	url = https://github.com/cloudfoundry/hm9000.git
 [submodule "src/hm-workspace"]
 	path = src/hm-workspace
 	url = https://github.com/cloudfoundry/hm-workspace
