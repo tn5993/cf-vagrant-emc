@@ -11,6 +11,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 4222, host: 4222
   config.vm.provision :shell, path: "bootstrap.sh"
   config.berkshelf.enabled = true
+
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
+    v.cpus = 1
+  end
+
   config.vm.provision :chef_solo do |chef|
     chef.add_recipe 'cloudfoundry::vagrant-provision-start'
 
@@ -34,5 +40,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
          :server_debian_password => "password"
       }
     }
+
+  
   end
 end

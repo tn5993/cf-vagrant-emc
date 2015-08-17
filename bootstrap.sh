@@ -23,7 +23,6 @@ apt-get -y install postgresql postgresql-contrib redis-server
 # install warden dependencies https://docs.cloudfoundry.org/concepts/architecture/warden.html
 apt-get install -y build-essential debootstrap
 
-
 echo "Set up postgresql"
 # fix permissions
 echo "-------------------- fixing listen_addresses on postgresql.conf"
@@ -99,4 +98,8 @@ sudo mount -o remount /
 sudo quotacheck -avugm
 sudo touch /aquota.user /aquota.group
 sudo quotaon -avug
+
+echo "------------------Set other environment variables-------------"
+sudo -u vagrant echo 'export DB=mysql' >> /home/vagrant/.profile
+sudo -u vagrant echo 'export DB_CONNECTION_STRING="mysql2://root:password@localhost:3306/cc_test"' >> /home/vagrant/.profile
 

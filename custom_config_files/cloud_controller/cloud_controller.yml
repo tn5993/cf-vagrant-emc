@@ -5,6 +5,7 @@ pid_filename: /tmp/cloud_controller.pid
 message_bus_servers:
   - nats://127.0.0.1:4222
 
+external_protocol: http
 external_domain:
   - api.192.168.12.34.xip.io
 
@@ -56,7 +57,7 @@ doppler:
   enabled: false
 
 db:
-  database: "postgres://postgres@localhost:5432/cc_test"
+  database: "mysql2://root:password@localhost:3306/cc_test"
   max_connections: 32
   pool_timeout: 10
 
@@ -142,3 +143,13 @@ install_buildpacks:
   - name: node_buildpack
     package: buildpack_node
 
+security_group_definitions:
+- name: dummy1
+  rules: []
+- name: dummy2
+  rules: []
+
+default_staging_security_groups:
+- dummy3
+default_running_security_groups:
+- dummy4

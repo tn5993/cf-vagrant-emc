@@ -56,9 +56,10 @@ namespace :cf do
   desc "Init cloud controller"
   task :do_init_cloud_controller_ng do
     puts "==> Deleting cloud_controller_ng database."
-    delete_cc_db!
+    system "bundle exec rake db:drop"
+    system "bundle exec rake db:create"
     puts "==> Runing migrations cloud_controller_ng database."
-    Dir.chdir path('src/cloud_controller_ng')
+    Dir.chdir path(CLOUD_CONTROLLER_PATH)
     system "bundle exec rake db:migrate"
   end
 

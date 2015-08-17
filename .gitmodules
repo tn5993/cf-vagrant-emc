@@ -19,3 +19,6 @@
 [submodule "src/hm-workspace"]
 	path = src/hm-workspace
 	url = https://github.com/cloudfoundry/hm-workspace
+[submodule "src/uaa"]
+	path = src/uaa
+	url = https://github.com/cloudfoundry/uaa.git
